@@ -15,7 +15,7 @@ const release = async () => {
     const deployEnvironment = core.getInput('environment', {required: false}) || '';
 
     const exec = async (arguments) => {
-        await sentry.execute([
+        await sentry.execute(arguments.concat([
             "--auth-token",
             authToken,
             "--url",
@@ -24,7 +24,7 @@ const release = async () => {
             sentryOrg,
             "--project",
             sentryProject
-        ].concat(arguments));
+        ]));
     }
 
     await exec([
