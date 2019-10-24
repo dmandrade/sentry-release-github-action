@@ -5,6 +5,12 @@ branding:
   icon: 'package'
   color: 'orange'
 inputs:
+  auth-token:
+    description: 'The authentication token to use for all communication with Sentry'
+    default: ''
+  url:
+    description: 'The URL to use to connect to sentry. This defaults to https://sentry.io/'
+    default: 'https://sentry.io/'
   org:
     description: 'The slug of the organization to use for a command'
     default: ''
@@ -19,4 +25,4 @@ inputs:
     default: ''
 runs:
   using: 'node12'
-  main: 'index.js'
+  main: 'dist/index.js'
