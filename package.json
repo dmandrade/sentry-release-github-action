@@ -5,7 +5,6 @@
     "main": "index.js",
     "scripts": {
         "lint": "eslint index.js",
-        "package": "ncc build index.js -o dist",
         "test": "eslint index.js && jest"
     },
     "repository": {
@@ -30,7 +29,6 @@
         "@sentry/cli": "^1.48.0"
     },
     "devDependencies": {
-        "@zeit/ncc": "^0.20.5",
         "eslint": "^6.3.0",
         "jest": "^24.9.0"
     }

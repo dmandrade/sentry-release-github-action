@@ -1,42 +1,19 @@
-const exec = require('@actions/exec');
-const core = require('@actions/core');
+const exec = require('./src/_exec');
+const path = require('path');
 
 const run = async () => {
-    try {
-        const baseCommand = 'npx sentry-cli releases';
-        const commandOptions = {
-            failOnStdErr: true,
-        };
-        const releaseVersion = core.getInput('version', {required: true});
-        const deployEnvironment = core.getInput('environment', {required: false}) || '';
-
-        await exec.exec(baseCommand, [
-            "new",
-            releaseVersion
-        ], commandOptions);
-        core.debug(`The release "${releaseVersion}" was sended to Sentry.`);
-
-        await exec.exec(baseCommand, [
-            "set-commits",
-            "--auto",
-            releaseVersion
-        ], commandOptions);
-        core.debug(`Commits are associated with release "${releaseVersion}".`);
-
-        if (deployEnvironment) {
-            await exec.exec(baseCommand, [
-                "deploys",
-                releaseVersion,
-                'new',
-                '-e',
-                deployEnvironment
-            ], commandOptions);
-            core.debug(`The release "${releaseVersion}" are associated with "${deployEnvironment}" environment.`);
+    // Install Dependencies
+    {
+        const {stdout, stderr} = await exec('npm ci --only=prod', {
+            cwd: path.resolve(__dirname)
+        });
+        console.log(stdout);
+        if (stderr) {
+            return Promise.reject(stderr);
         }
     }
-    catch (error) {
-        core.setFailed(error.message);
-    }
+
+    require('./src/index')();
 };
 
-run();
+run().catch(console.error);
