@@ -1,6 +1,5 @@
 const core = require('@actions/core');
 const SentryCli = require('@sentry/cli');
-const sentry = new SentryCli();
 
 /**
  * Release task
@@ -14,17 +13,16 @@ const release = async () => {
     const releaseVersion = core.getInput('version', {required: true});
     const deployEnvironment = core.getInput('environment', {required: false}) || '';
 
+
+    const sentry = new SentryCli(null, {
+        auth_token: authToken,
+        url: sentryUrl,
+        org: sentryOrg,
+        project: sentryProject
+    });
+
     const exec = async (arguments) => {
-        await sentry.execute(arguments.concat([
-            "--auth-token",
-            authToken,
-            "--url",
-            sentryUrl,
-            "--org",
-            sentryOrg,
-            "--project",
-            sentryProject
-        ]));
+        await sentry.execute(arguments);
     }
 
     await exec([
