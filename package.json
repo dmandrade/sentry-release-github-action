@@ -1,15 +1,37 @@
 {
-  "name": "@dmandrade/sentry-release-github-action",
-  "version": "1.0.0",
-  "private": true,
-  "main": "index.js",
-  "keywords": [
-    "sentry",
-    "action"
-  ],
-  "dependencies": {
-    "@actions/core": "^1.1.3",
-    "@actions/exec": "^1.0.1",
-    "@sentry/cli": "^1.48.0"
-  }
+    "name": "@dmandrade/sentry-release-github-action",
+    "version": "1.0.0",
+    "private": true,
+    "main": "index.js",
+    "scripts": {
+        "lint": "eslint index.js",
+        "package": "ncc build index.js -o dist",
+        "test": "eslint index.js && jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dmandrade/sentry-release-github-action.git"
+    },
+    "keywords": [
+        "GitHub",
+        "Actions",
+        "Sentry",
+        "Release"
+    ],
+    "author": "Danilo Andrade",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/dmandrade/sentry-release-github-action/issues"
+    },
+    "homepage": "https://github.com/dmandrade/sentry-release-github-action",
+    "dependencies": {
+        "@actions/core": "^1.1.3",
+        "@actions/exec": "^1.0.1",
+        "@sentry/cli": "^1.48.0"
+    },
+    "devDependencies": {
+        "@zeit/ncc": "^0.20.5",
+        "eslint": "^6.3.0",
+        "jest": "^24.9.0"
+    }
 }
