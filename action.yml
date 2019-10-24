@@ -1,0 +1,22 @@
+name: 'Sentry Release Action'
+description: 'GitHub Action for send releases to Sentry'
+author: 'dmandrade'
+branding:
+  icon: 'package'
+  color: 'orange'
+inputs:
+  org:
+    description: 'The slug of the organization to use for a command'
+    default: ''
+  project:
+    description: 'The slug of the project to use for a command'
+    default: ''
+  version:
+    description: 'Version tag'
+    default: ''
+  environment:
+    description: 'Deploy environment to associate with release'
+    default: ''
+runs:
+  using: 'node12'
+  main: 'index.js'
