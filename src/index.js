@@ -15,7 +15,7 @@ const release = async () => {
         "new",
         releaseVersion
     ]);
-    core.debug(`The release "${releaseVersion}" was sended to Sentry.`);
+    console.log(`The release "${releaseVersion}" was sended to Sentry.`);
 
     await sentry.execute([
         "releases",
@@ -23,7 +23,6 @@ const release = async () => {
         "--auto",
         releaseVersion
     ]);
-    core.debug(`Commits are associated with release "${releaseVersion}".`);
 
     if(deployEnvironment) {
         await sentry.execute([
@@ -34,7 +33,7 @@ const release = async () => {
             '-e',
             deployEnvironment
         ]);
-        core.debug(`The release "${releaseVersion}" are associated with "${deployEnvironment}" environment.`);
+        console.log(`The release "${releaseVersion}" are associated with "${deployEnvironment}" environment.`);
     }
 };
 
