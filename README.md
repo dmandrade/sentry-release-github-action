@@ -1,4 +1,4 @@
-# WIP Sentry Release Github Action
+# Sentry Release Github Action
 
 GitHub Action for send releases to [Sentry](https://docs.sentry.io/workflow/releases/). 
 
