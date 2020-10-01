@@ -20,7 +20,7 @@
     },
     "homepage": "https://github.com/dmandrade/sentry-release-github-action",
     "dependencies": {
-        "@actions/core": "^1.1.3",
+        "@actions/core": "^1.2.6",
         "@sentry/cli": "^1.48.0"
     },
     "devDependencies": {}
